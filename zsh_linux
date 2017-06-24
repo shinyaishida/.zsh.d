@@ -1,0 +1,17 @@
+#
+# Extra configurations for Linux (for Ubuntu)
+#
+
+function configLinuxbrew() {
+  local LINUXBREW_HOME=$HOME/.linuxbrew
+  AddPriorPath ${LINUXBREW_HOME}/bin
+  AddExtraManPage ${LINUXBREW_HOME}/share/man
+  AddExtraInfoPage ${LINUXBREW_HOME}/share/info
+  export LD_LIBRARY_PATH="${LINUXBREW_HOME}/lib:${LD_LIBRARY_PATH}"
+}
+
+[ $(uname -s) = "Linux" ] && {
+  configLinuxbrew
+}
+
+unset -f configLinuxbrew
