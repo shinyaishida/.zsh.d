@@ -1,0 +1,94 @@
+function ConvertNumberBase() {
+    # This function has three arguments; input base, output base, and number to
+    # convert.
+    echo "ibase=$1; obase=$2; $3" | bc 2> /dev/null
+}
+
+function b2o() {
+    # This function converts a binary number to the corrensponding octal number.
+    if [[ "$1" =~ '^-?[01][01]*$' ]]; then
+	ConvertNumberBase 2 1000 $1
+    fi
+}
+
+function b2d() {
+    # This function converts a binary number to the corresponding decimal number.
+    if [[ "$1" =~ '^-?[01][01]*$' ]]; then
+	ConvertNumberBase 2 1010 $1
+    fi
+}
+
+function b2h() {
+    # This function converts a binary number to the corresponding hexadecimal number.
+    if [[ "$1" =~ '^-?[01][01]*$' ]]; then
+	ConvertNumberBase 2 10000 $1
+    fi
+}
+
+function o2b() {
+    # This function converts an octal number to the corresponding binary number.
+    if [[ "$1" =~ '^-?[0-7][0-7]*$' ]]; then
+	ConvertNumberBase 8 2 $1
+    fi
+}
+
+function o2d() {
+    # This function converts an octal number to the corresponding decimal number.
+    if [[ "$1" =~ '^-?[0-7][0-7]*$' ]]; then
+	ConvertNumberBase 8 12 $1
+    fi
+}
+
+function o2h() {
+    # This function converts an octal number to the corresponding hexadecimal number.
+    if [[ "$1" =~ '^-?[0-7][0-7]*$' ]]; then
+	ConvertNumberBase 8 20 $1
+    fi
+}
+
+function d2b() {
+    # This function converts a decimal number to the corresponding binary number.
+    if [[ "$1" =~ '^-?[0-9][0-9]*$' ]]; then
+	ConvertNumberBase 10 2 $1
+    fi
+}
+
+function d2o() {
+    # This function converts a decimal number to the corresponding octal number.
+    if [[ "$1" =~ '^-?[0-9][0-9]*$' ]]; then
+	ConvertNumberBase 10 8 $1
+    fi
+}
+
+function d2h() {
+    # This function converts a decimal number to the corresponding hexadecimal number.
+    if [[ "$1" =~ '^-?[0-9][0-9]*$' ]]; then
+	ConvertNumberBase 10 16 $1
+    fi
+}
+
+function ToUpperCase() {
+    # Converts lower case letters "a-f" to upper case letters.
+    echo $1 | tr '[a-z]' '[A-Z]' 2> /dev/null
+}
+
+function h2b() {
+    # This function converts a hexadecimal number to the corresponding binary number.
+    if [[ "$1" =~ '^-?[0-9|a-f|A-F][0-9|a-f|A-F]*$' ]]; then
+	ConvertNumberBase 16 2 $(ToUpperCase $1)
+    fi
+}
+
+function h2o() {
+    # This function converts a hexadecimal number to the corresponding octal number.
+    if [[ "$1" =~ '^-?[0-9|a-f|A-F][0-9|a-f|A-F]*$' ]]; then
+	ConvertNumberBase 16 8 $(ToUpprCase $1)
+    fi
+}
+
+function h2d() {
+    # This function converts a hexadecimal number to the corresponding decimal number.
+    if [[ "$1" =~ '^-?[0-9|a-f|A-F][0-9|a-f|A-F]*$' ]]; then
+	ConvertNumberBase 16 A $(ToUpperCase $1)
+    fi
+}
