@@ -15,7 +15,7 @@ else
 	    echo "$HOME/$file exists. Aborted."
 	    break
 	else
-	    ln -s ${pwd}z$f $file
+	    ln -s ${zshd}/z$f $file
 	fi
     done
 fi
