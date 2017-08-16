@@ -6,8 +6,8 @@ files='profile shenv shrc'
 
 cd $HOME
 if [ -e ${zshd} ]; then
-#    echo "${zshd} exists. Aborted."
-#else
+    echo "${zshd} exists. Aborted."
+else
     ln -s ${pwd} .zsh.d
     for f in ${files}; do
 	file=".z$f"
