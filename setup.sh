@@ -8,14 +8,14 @@ cd $HOME
 if [ -e ${zshd} ]; then
     echo "${zshd} exists. Aborted."
 else
-    echo ln -s ${pwd} .zsh.d
+    ln -s ${pwd} .zsh.d
     for f in ${files}; do
 	file=".z$f"
 	if [ -e ${file} ]; then
 	    echo "$HOME/$file exists. Aborted."
 	    break
 	else
-	    echo ln -s ${pwd}z$f $file
+	    ln -s ${pwd}z$f $file
 	fi
     done
 fi
