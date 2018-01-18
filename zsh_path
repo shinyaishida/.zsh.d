@@ -1,5 +1,2 @@
-[ -d ~/bin ] && PATH=~/bin:$PATH
-[ -d ~/xbin ] && PATH=$PATH:~/xbin
-[ -d /usr/local/bin ] && PATH=/usr/local/bin:$PATH
-[ -d /usr/local/sbin ] && PATH=/usr/local/sbin:$PATH
-
+AddPriorPath ~/.pyenv/shims
+AddPriorPath ~/.rbenv/shims

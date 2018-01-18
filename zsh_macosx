@@ -22,11 +22,11 @@ function configMacPorts() {
 }
 
 function configHomebrew() {
-  PATH="/usr/local/sbin:$PATH"
+    AddPriorPath /usr/local/sbin
 }
 
 [ $(uname -s) = "Darwin" ] && {
-  configHomebrew
+    configHomebrew
 }
 
 unset -f configMacPorts
