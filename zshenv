@@ -10,6 +10,22 @@
 umask 022
 zshConfigPath=~/.zsh.d
 
+function AddPriorPath() {
+    [ -d $1 ] && [[ ! $PATH =~ $1 ]] && PATH=$1:$PATH
+}
+
+function AddExtraPath() {
+    [ -d $1 ] && [[ ! $PATH =~ $1 ]] && PATH=$PATH:$1
+}
+
+function AddExtraManPath() {
+    [ -d $1 ] && [[ ! $MANPATH =~ $1 ]] && MANPATH=${MANPATH:+$MANPATH:}$1
+}
+
+function AddExtraInfoPath() {
+    [ -d $1 ] && [[ ! $INFOPATH =~ $1 ]] && INFOPATH=${INFOPATH:+$INFOPATH:}$1
+}
+
 function LoadZshEnv() {
     pushd ${zshConfigPath} >/dev/null
     local zshEnv=zshenv_$1
@@ -22,11 +38,26 @@ case "${OSTYPE}" in
 	LoadZshEnv linux
 	;;
     darwin*)
-	LoadZshEnv macosx
+	LoadZshEnv macos
 	;;
     cygwin*)
 	LoadZshEnv cygwin
 	;;
 esac
 
+localPaths=($(cat <<EOF
+$HOME/.pyenv/shims
+$HOME/.rbenv/shims
+$HOME/bin
+EOF
+	    ))
+for lp in ${localPaths[@]}; do
+    AddPriorPath ${lp}
+done
+
 unset -f LoadZshEnv
+unset localPaths
+unset -f AddExtraInfoPath
+unset -f AddExtraManPath
+unset -f AddExtraPath
+unset -f AddPriorPath
