@@ -5,6 +5,8 @@
 # up aliases, functions, options, key bindings, etc.
 #
 
+fpath=(${zshConfigPath}/functions/*(N-/) $fpath)
+
 zshCommonConfigs=common
 zshConfigPrefix=zsh_
 

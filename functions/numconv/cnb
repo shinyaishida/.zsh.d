@@ -1,0 +1,4 @@
+# converts number base.
+# This function has three arguments; input base, output base, and number to
+# convert.
+echo "ibase=$1; obase=$2; $3" | bc 2> /dev/null

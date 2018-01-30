@@ -1,0 +1,4 @@
+# converts a hexadecimal number to the corresponding octal number.
+autoload -Uz cnb
+autoload -Uz 2uc
+[[ "$1" =~ '^-?[0-9|a-f|A-F][0-9|a-f|A-F]*$' ]] && cnb 16 8 $(2uc $1)
