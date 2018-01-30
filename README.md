@@ -7,11 +7,8 @@ zsh
 % mkdir <somewhere/you/wanna/put/it>
 % cd !$
 % git clone git@github.com:shinyaishida/zsh.git
+% ./setup.sh
 % cd
-% ln -s <somewhere/you/wanna/put/it>/zsh .zsh.d
-% ls -s .zsh.d/zprofile .zprofile
-% ln -s .zsh.d/zshenv .zshenv
-% ln -s .zsh.d/zshrc .zshrc
 ```
 
 ## Usage
