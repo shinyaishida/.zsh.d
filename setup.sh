@@ -1,22 +1,21 @@
 #!/bin/sh
 
 pwd=$(pwd)/${0%%setup.sh}
-zshd="$HOME"/.zsh.d
-files='profile shenv shrc'
+zshd=.zsh.d
+files='zprofile zshenv zshrc'
 
 cd $HOME
 if [ -e ${zshd} ]; then
-    echo "${zshd} exists. Aborted."
+    echo "$HOME/${zshd} exists."
 else
-    ln -s ${pwd} .zsh.d
-    for f in ${files}; do
-	file=".z$f"
-	if [ -e ${file} ]; then
-	    echo "$HOME/$file exists. Aborted."
-	    break
-	else
-	    ln -s ${zshd}/z$f $file
-	fi
-    done
+    ln -s ${pwd} ${zshd}
 fi
+for file in ${files}; do
+    dotfile=.${file}
+    if [ -e ${dotfile} ]; then
+	echo "$HOME/${dotfile} exists."
+    else
+	ln -s ${zshd}/${file} ${dotfile}
+    fi
+done
 cd - > /dev/null
