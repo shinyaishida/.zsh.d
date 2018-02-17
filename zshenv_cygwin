@@ -4,5 +4,8 @@
 
 [ "${OSTYPE}" = "cygwin" ] && {
   export CYGWIN_SYSTEM_LOCALE=$(systeminfo | \
-    head -22 | tail -1 | awk '{print $3}' | cut -d';' -f 1)
+                                  head -22 | \
+                                  tail -1 | \
+                                  awk '{print $3}' | \
+                                  cut -d';' -f 1)
 }

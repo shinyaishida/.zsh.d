@@ -6,13 +6,13 @@ alias where="command -v"
 alias j="jobs -l"
 
 case "${OSTYPE}" in
-freebsd*|darwin*)
+  freebsd*|darwin*)
     alias ls="ls -A -G -w"
     ;;
-linux*)
+  linux*)
     alias ls="ls -A --color"
     ;;
-cygwin*)
+  cygwin*)
     alias ls="ls -FAx"
     ;;
 esac

@@ -11,20 +11,20 @@ umask 022
 zshConfigPath=~/.zsh.d
 
 function LoadZshEnv() {
-    pushd ${zshConfigPath} >/dev/null
-    local zshEnv=zshenv_$1
-    [ -f ${zshEnv} ] && source ${zshEnv}
-    popd >/dev/null
+  pushd ${zshConfigPath} >/dev/null
+  local zshEnv=zshenv_$1
+  [ -f ${zshEnv} ] && source ${zshEnv}
+  popd >/dev/null
 }
 
 case "${OSTYPE}" in
-    linux*)
+  linux*)
 	LoadZshEnv linux
 	;;
-    darwin*)
+  darwin*)
 	LoadZshEnv macos
 	;;
-    cygwin*)
+  cygwin*)
 	LoadZshEnv cygwin
 	;;
 esac

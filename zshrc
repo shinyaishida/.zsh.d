@@ -22,9 +22,9 @@ function LoadConfiguration() {
 
 pushd ${zshConfigPath} >/dev/null
 [ -f ${zshCommonConfigs} ] && {
-    for config in $(cat ${zshCommonConfigs} 2>/dev/null); do
-	  LoadConfiguration ${config}
-    done
+  for config in $(cat ${zshCommonConfigs} 2>/dev/null); do
+	LoadConfiguration ${config}
+  done
 }
 popd >/dev/null
 

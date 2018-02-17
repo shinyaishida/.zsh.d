@@ -27,15 +27,15 @@ bindkey "\e[Z" reverse-menu-complete
 # Second successive ctrl-z sends the job to the background.
 #
 ctrl-z-hook () {
-    if [[ $#BUFFER -eq 0 ]]; then
+  if [[ $#BUFFER -eq 0 ]]; then
 	echo
 	bg
 	zle redisplay
-    else
+  else
 	zle push-input
-    fi
-    echo "-- job list --"
-    jobs -l
+  fi
+  echo "-- job list --"
+  jobs -l
 }
 zle -N ctrl-z-hook
 bindkey "^z" ctrl-z-hook

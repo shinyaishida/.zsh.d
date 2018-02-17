@@ -1,6 +1,6 @@
 export LANG=en_US.UTF-8
 case ${UID} in
-0)
+  0)
     export LANG=C
     ;;
 esac

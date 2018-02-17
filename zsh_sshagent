@@ -1,12 +1,12 @@
 AgentCache=~/.ssh/agent
 
 [ -f ${AgentCache} ] && {
-    source ${AgentCache}
-    kill -0 $SSH_AGENT_PID >/dev/null 2>&1
+  source ${AgentCache}
+  kill -0 $SSH_AGENT_PID >/dev/null 2>&1
 }
 [ $? != 0 ] && {
-    ssh-agent > ${AgentCache}
-    source ${AgentCache}
+  ssh-agent > ${AgentCache}
+  source ${AgentCache}
 }
 
 ssh-add -A
