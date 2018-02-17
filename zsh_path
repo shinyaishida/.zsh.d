@@ -1,0 +1,28 @@
+function AddPriorPath() {
+    [ -d $1 ] && [[ ! $PATH =~ $1 ]] && PATH=$1:$PATH
+}
+
+function AddExtraPath() {
+    [ -d $1 ] && [[ ! $PATH =~ $1 ]] && PATH=$PATH:$1
+}
+
+function AddExtraManPath() {
+    [ -d $1 ] && [[ ! $MANPATH =~ $1 ]] && MANPATH=${MANPATH:+$MANPATH:}$1
+}
+
+function AddExtraInfoPath() {
+    [ -d $1 ] && [[ ! $INFOPATH =~ $1 ]] && INFOPATH=${INFOPATH:+$INFOPATH:}$1
+}
+
+AddPriorPath $HOME/bin
+
+venvs=(pyenv rbenv)
+for venv in ${venvs[@]}; do
+  [ $(command -v ${venv}) ] && eval "$(${venv} init -)"
+done
+unset venvs
+
+unset -f AddExtraInfoPath
+unset -f AddExtraManPath
+unset -f AddExtraPath
+unset -f AddPriorPath

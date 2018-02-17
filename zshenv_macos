@@ -22,7 +22,6 @@ function configMacPorts() {
 }
 
 function configHomebrew() {
-    AddPriorPath /usr/local/sbin
     local zshCompDir=/usr/local/share/zsh-completions
     [ -d ${zshCompDir} ] && fpath=(${zshCompDir} $fpath)
 }
