@@ -1,5 +1,5 @@
 #
-# Extra configrations for Mac OS X
+# Extra configrations for MacOS
 #
 
 function configMacPorts() {
@@ -24,6 +24,7 @@ function configMacPorts() {
 function configHomebrew() {
   local zshCompDir=/usr/local/share/zsh-completions
   [ -d ${zshCompDir} ] && fpath=(${zshCompDir} $fpath)
+  alias brew="PATH=$(cat /etc/paths | tr '\n' ':') brew"
 }
 
 function configJava() {
@@ -31,7 +32,8 @@ function configJava() {
 }
 
 [ $(uname -s) = "Darwin" ] && {
-  configHomebrew
+  [ $(command -v port) ] && configMacPorts
+  [ $(command -v brew) ] && configHomebrew
   configJava
 }
 
