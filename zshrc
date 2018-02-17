@@ -31,4 +31,6 @@ popd >/dev/null
 unset -f LoadConfiguration
 unset zshConfigPrefix
 unset zshCommonConfigs
+
+# unset variable defined in zshenv
 unset zshConfigPath

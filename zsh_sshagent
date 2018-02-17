@@ -9,4 +9,4 @@ AgentCache=~/.ssh/agent
   source ${AgentCache}
 }
 
-ssh-add -A
+[[ "${OSTYPE}" =~ darwin* ]] && ssh-add -A
