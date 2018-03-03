@@ -1,19 +1,12 @@
 zsh
 ====
 
-## Install
+## Installation
 
 ```bash
-% git clone https@github.com:shinyaishida/zsh.git ~/.zsh.d
-% ~/.zsh.d/setup.sh
-```
-or
-```bash
-% mkdir <somewhere/you/wanna/put/it>
-% cd !$
-% git clone https@github.com:shinyaishida/zsh.git
-% ./setup.sh
 % cd
+% git clone https@github.com:shinyaishida/.zsh.d.git
+% .zsh.d/setup.sh
 ```
 
 ## Usage
