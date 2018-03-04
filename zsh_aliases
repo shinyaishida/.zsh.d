@@ -43,3 +43,5 @@ alias elc="emacs -batch -f batch-byte-compile"
 
 alias tmuxl='tmux list-sessions'
 alias tmuxa='tmux attach-session -t'
+
+alias ev='f() { env | grep -i -e "^.*$1.*=" };f'
