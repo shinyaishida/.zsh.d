@@ -5,7 +5,7 @@
 
 ```bash
 % cd
-% git clone https@github.com:shinyaishida/.zsh.d.git
+% git clone https://github.com/shinyaishida/.zsh.d.git
 % .zsh.d/setup.sh
 ```
 
