@@ -7,6 +7,8 @@
 
 fpath=(${zshConfigPath}/functions/*(N-/) $fpath)
 
+autoload -Uz add-zsh-hook
+
 zshCommonConfigs=common
 zshConfigPrefix=zsh_
 

@@ -36,8 +36,9 @@ esac
 #
 case "${TERM}" in
   xterm|xterm-color|kterm|kterm-color)
-    precmd() {
+    __print_terminal_title() {
       echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
     }
+    add-zsh-hook precmd __print_terminal_title
     ;;
 esac
