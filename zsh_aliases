@@ -45,3 +45,8 @@ alias tmuxl='tmux list-sessions'
 alias tmuxa='tmux attach-session -t'
 
 alias ev='f() { env | grep -i -e "^.*$1.*=" };f'
+
+alias cfz='f() { tar cfz $1.tgz $1 };f'
+alias xfz='tar xfj'
+alias cfj='f() { tar cfj $1.tz2 $1 };f'
+alias xfj='tar xfj'
