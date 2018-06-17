@@ -50,3 +50,5 @@ alias cfz='f() { tar cfz $1.tgz $1 };f'
 alias xfz='tar xfj'
 alias cfj='f() { tar cfj $1.tz2 $1 };f'
 alias xfj='tar xfj'
+
+alias gap='for i in $(seq 10); do echo; done'
