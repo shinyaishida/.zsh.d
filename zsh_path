@@ -16,10 +16,16 @@ function AddExtraInfoPath() {
 
 AddPriorPath $HOME/bin
 
-# can be removed if Ubuntu's rbenv package supply latest ruby version.
-[[ "${OSTYPE}" =~ linux* ]] && AddPriorPath $HOME/.rbenv/bin
-
 venvs=(pyenv rbenv nodenv)
+
+# *env is to be installed on Linux by basic GitHub checkout
+[[ "${OSTYPE}" =~ linux* ]] && {
+  for venv in ${venvs[@]}; do
+    local venv_bin=$HOME/.${venv}/bin
+    [ -d ${venv_bin} ] && AddPriorPath ${venv_bin}
+  done
+}
+
 for venv in ${venvs[@]}; do
   [ $(command -v ${venv}) ] && eval "$(${venv} init -)"
 done
