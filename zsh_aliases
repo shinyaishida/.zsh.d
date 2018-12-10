@@ -13,7 +13,7 @@ case "${OSTYPE}" in
     alias ls="ls -A --color"
     ;;
   cygwin*)
-    alias ls="ls -FAx"
+    alias ls="ls -FAx --color=auto"
     ;;
 esac
 
