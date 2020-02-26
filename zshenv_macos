@@ -2,25 +2,6 @@
 # Extra configrations for MacOS
 #
 
-function configMacPorts() {
-  local MacPortsLib=/opt/local/lib/
-  [ -d ${MacPortsLib} ] && {
-	export DYLD_FALLBACK_LIBRARY_PATH=${MacPortsLib}
-	unset DYLD_LIBRARY_PATH
-  }
-
-  local port_home=/usr/local
-  local port_include=${port_home}/include
-  local port_lib=${port_home}/lib
-  [ -d ${port_include} ] && {
-	C_INCLUDE_PATH=${C_INCLUDE+${C_INCLUDE}:}${port_include}
-	export CPLUS_INCLUDE_PATH=${CPLUS_INCLUDE_PATH+${CPLUS_INCLUDE_PATH}:}${port_include}
-  }
-  [ -d ${port_lib} ] && {
-	export LIBRARY_PATH=${LIBRARY_PATH+${LIBRARY_PATH}:}${port_lib}
-  }
-}
-
 function configHomebrew() {
   local zshCompDir=/usr/local/share/zsh-completions
   [ -d ${zshCompDir} ] && fpath=(${zshCompDir} $fpath)
@@ -32,10 +13,8 @@ function configJava() {
 }
 
 [ $(uname -s) = "Darwin" ] && {
-  [ $(command -v port) ] && configMacPorts
   [ $(command -v brew) ] && configHomebrew
   configJava
 }
 
-unset -f configMacPorts
 unset -f configHomebrew
