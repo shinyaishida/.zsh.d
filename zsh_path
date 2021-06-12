@@ -16,15 +16,14 @@ function AddExtraInfoPath() {
 
 AddPriorPath $HOME/bin
 
-venvs=(pyenv rbenv nodenv)
-
-# *env is to be installed on Linux by basic GitHub checkout
-[[ "${OSTYPE}" =~ linux* ]] && {
-  for venv in ${venvs[@]}; do
-    local venv_bin=$HOME/.${venv}/bin
-    [ -d ${venv_bin} ] && AddPriorPath ${venv_bin}
-  done
+# `pyenv init -` no longer sets PATH.
+PYENV_ROOT="$HOME/.pyenv"
+[ -d $PYENV_ROOT ] && {
+  export PYENV_ROOT
+  eval "$(pyenv init --path)"
 }
+
+venvs=(pyenv rbenv nodenv)
 
 for venv in ${venvs[@]}; do
   [ $(command -v ${venv}) ] && eval "$(${venv} init -)"

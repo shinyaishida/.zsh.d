@@ -1,3 +1,10 @@
 #
 # Extra configurations for Linux (for Ubuntu)
 #
+
+# *env is to be installed by basic GitHub checkout
+venvs=(pyenv rbenv nodenv)
+for venv in ${venvs[@]}; do
+  local venv_bin=$HOME/.${venv}/bin
+  [ -d ${venv_bin} ] && AddPriorPath ${venv_bin}
+done

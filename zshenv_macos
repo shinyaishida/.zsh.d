@@ -3,17 +3,20 @@
 #
 
 function configHomebrew() {
-  local zshCompDir=/usr/local/share/zsh-completions
-  [ -d ${zshCompDir} ] && fpath=(${zshCompDir} $fpath)
-  alias brew="PATH=$(cat /etc/paths | tr '\n' ':') brew"
+  HOMEBREW_HOME=/opt/homebrew
+  [ -d $HOMEBREW_HOME ] && {
+    eval "$($HOMEBREW_HOME/bin/brew shellenv)"
+  }
 }
 
 function configJava() {
-  export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
+  [ -f "/usr/libexec/java_home" ] && {
+    export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
+  }
 }
 
 [ $(uname -s) = "Darwin" ] && {
-  [ $(command -v brew) ] && configHomebrew
+  configHomebrew
   configJava
 }
 

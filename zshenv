@@ -13,7 +13,10 @@ zshConfigPath=~/.zsh.d
 function LoadZshEnv() {
   pushd ${zshConfigPath} >/dev/null
   local zshEnv=zshenv_$1
-  [ -f ${zshEnv} ] && source ${zshEnv}
+  [ -f ${zshEnv} ] && {
+    echo "Loading $1 env"
+    source ${zshEnv}
+  }
   popd >/dev/null
 }
 
