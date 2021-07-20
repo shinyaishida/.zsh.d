@@ -6,5 +6,7 @@
 venvs=(pyenv rbenv nodenv)
 for venv in ${venvs[@]}; do
   local venv_bin=$HOME/.${venv}/bin
-  [ -d ${venv_bin} ] && AddPriorPath ${venv_bin}
+  [ -d ${venv_bin} ] && {
+    PATH=${venv_bin}:$PATH
+  }
 done
