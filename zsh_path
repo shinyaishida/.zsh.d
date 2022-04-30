@@ -12,4 +12,12 @@ venvs=(pyenv rbenv nodenv)
 for venv in ${venvs[@]}; do
   [ $(command -v ${venv}) ] && eval "$(${venv} init -)"
 done
+
+[ $(uname -s) = "Darwin" ] && {
+  HOMEBREW_HOME=/opt/homebrew
+  [ -d "${HOMEBREW_HOME}" ] && {
+    eval "$($HOMEBREW_HOME/bin/brew shellenv)"
+  }
+}
+
 unset venvs
