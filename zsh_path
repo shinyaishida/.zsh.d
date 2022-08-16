@@ -20,4 +20,10 @@ for venv in ${venvs[@]}; do
   [ $(command -v ${venv}) ] && eval "$(${venv} init -)"
 done
 
+# Rust
+CARGO_ROOT="$HOME/.cargo"
+[ -d $CARGO_ROOT ] && {
+  source "$CARGO_ROOT/env"
+}
+
 unset venvs

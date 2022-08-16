@@ -14,8 +14,18 @@ function LoadZshEnv() {
   pushd ${zshConfigPath} >/dev/null
   local zshEnv=zshenv_$1
   [ -f ${zshEnv} ] && {
-    echo "Loading $1 env"
+    [ ${#1} -lt 4 ] && {
+      padding="\t\t"
+    } || {
+      padding="\t"
+    }
+    echo -n "Loading $1 env${padding}"
     source ${zshEnv}
+    [ $? -eq 0 ] && {
+      echo "done"
+    } || {
+      echo "failed"
+    }
   }
   popd >/dev/null
 }

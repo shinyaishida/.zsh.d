@@ -14,10 +14,22 @@ zshConfigPrefix=zsh_
 
 function LoadConfiguration() {
   [ x"$1" != x ] && {
-	local config=${zshConfigPrefix}$1
+    local config=${zshConfigPrefix}$1
     [ -f ${config} ] && {
-	  echo "Loading $1"
-	  source ${config}
+      [ ${#1} -lt 8 ] && {
+        padding="\t\t"
+      } || {
+	padding="\t"
+      }
+      echo -n "Loading $1${padding}"
+      source ${config}
+      [ $? -eq 0 ] && {
+	echo "done"
+      } || {
+	echo "failed"
+      }
+    } || {
+      echo "Cannot find $1 configuration. Skip it."
     }
   }
 }
