@@ -9,4 +9,10 @@ AgentCache=~/.ssh/agent
   source ${AgentCache}
 }
 
-[[ "${OSTYPE}" =~ darwin* ]] && ssh-add -A
+[[ "${OSTYPE}" =~ darwin* ]] && {
+  (( ${OSTYPE#darwin} >= 20.0 )) && {
+    ssh-add --apple-load-keychain
+  } || {
+    ssh-add -A
+  }
+}
