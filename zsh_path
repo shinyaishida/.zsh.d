@@ -1,5 +1,12 @@
 PATH=$HOME/bin:$PATH
 
+[ $(uname -s) = "Darwin" ] && {
+  HOMEBREW_HOME=/opt/homebrew
+  [ -d "${HOMEBREW_HOME}" ] && {
+    eval "$($HOMEBREW_HOME/bin/brew shellenv)"
+  }
+}
+
 # `pyenv init -` no longer sets PATH.
 PYENV_ROOT="$HOME/.pyenv"
 [ -d $PYENV_ROOT ] && {
@@ -7,17 +14,10 @@ PYENV_ROOT="$HOME/.pyenv"
   eval "$(pyenv init --path)"
 }
 
-venvs=(pyenv rbenv nodenv)
+venvs=(rbenv nodenv)
 
 for venv in ${venvs[@]}; do
   [ $(command -v ${venv}) ] && eval "$(${venv} init -)"
 done
-
-[ $(uname -s) = "Darwin" ] && {
-  HOMEBREW_HOME=/opt/homebrew
-  [ -d "${HOMEBREW_HOME}" ] && {
-    eval "$($HOMEBREW_HOME/bin/brew shellenv)"
-  }
-}
 
 unset venvs
