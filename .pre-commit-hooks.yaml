@@ -1,0 +1,5 @@
+- id: zshrc-shellcheck
+  name: ShellCheck for zshrc files
+  description: This hook applies ShellCheck to zshrc files in .zsh.d.
+  language: docker_image
+  entry: docker.io/koalaman/shellcheck:v0.9.0
