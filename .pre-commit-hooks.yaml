@@ -3,3 +3,4 @@
   description: This hook applies ShellCheck to zshrc files in .zsh.d.
   language: docker_image
   entry: docker.io/koalaman/shellcheck:v0.9.0
+  exclude: '.git*|.pre-commit*|LICENSE|README.md|*.sw?'
