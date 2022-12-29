@@ -16,3 +16,4 @@ repos:
   rev: feature/pre-commit
   hooks:
   - id: zshrc-shellcheck
+    args: ["--shell=bash"]
