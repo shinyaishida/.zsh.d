@@ -44,11 +44,46 @@ alias elc="emacs -batch -f batch-byte-compile"
 alias tmuxl='tmux list-sessions'
 alias tmuxa='tmux attach-session -t'
 
-alias ev='f() { env | grep -i -e "^.*$1.*=" };f'
+ev() { env | grep -i -e "^.*$1.*="; }
 
-alias cfz='f() { tar cfz $1.tgz $1 };f'
+cfz() { tar cfz "$1.tgz" "$1"; }
 alias xfz='tar xfj'
-alias cfj='f() { tar cfj $1.tz2 $1 };f'
+cfj() { tar cfj "$1.tz2" "$1"; }
 alias xfj='tar xfj'
 
 alias gap='for i in $(seq 10); do echo; done'
+
+# convert given argument string to lower cases.
+2lc() { echo "$1" | tr '[:upper:]' '[:lower:]' 2> /dev/null; }
+# convert given argument string to upper cases.
+2uc() { echo "$1" | tr '[:lower:]' '[:upper:]' 2> /dev/null; }
+
+# convert number base.
+# $1: input base
+# $2: output base
+# $3: number to convert
+cnb() { echo "ibase=$1; obase=$2; $3" | bc 2> /dev/null; }
+# convert a binary number to the corresponding octal number.
+b2d() { [[ "$1" =~ ^-?[01][01]*$ ]] && cnb 2 1000 "$1"; }
+# convert a binary number to the corresponding decimal number.
+b2o() { [[ "$1" =~ ^-?[01][01]*$ ]] && cnb 2 1000 "$1"; }
+# convert a binary number to the corresponding hexadecimal number.
+b2h() { [[ "$1" =~ ^-?[01][01]*$ ]] && cnb 2 10000 "$1"; }
+# convert an octal number to the corresponding binary number.
+o2b() { [[ "$1" =~ ^-?[0-7][0-7]*$ ]] && cnb 8 2 "$1"; }
+# convert an octal number to the corresponding decimal number.
+o2d() { [[ "$1" =~ ^-?[0-7][0-7]*$ ]] && cnb 8 12 "$1"; }
+# convert an octal number to the corresponding hexadecimal number.
+o2h() { [[ "$1" =~ ^-?[0-7][0-7]*$ ]] && cnb 8 20 "$1"; }
+# convert a decimal number to the corresponding binary number.
+d2b() { [[ "$1" =~ ^-?[0-9][0-9]*$ ]] && cnb 10 2 "$1"; }
+# convert a decimal number to the corresponding octal number.
+d2o() { [[ "$1" =~ ^-?[0-9][0-9]*$ ]] && cnb 10 8 "$1"; }
+# convert a decimal number to the corresponding hexadecimal number.
+d2h() { [[ "$1" =~ ^-?[0-9][0-9]*$ ]] && cnb 10 16 "$1"; }
+# convert a hexadecimal number to the corresponding binary number.
+h2b() { [[ "$1" =~ ^-?[0-9a-fA-F][0-9a-fA-F]*$ ]] && cnb 16 2 "$(2uc "$1")"; }
+# convert a hexadecimal number to the corresponding octal number.
+h2o() { [[ "$1" =~ ^-?[0-9a-fA-F][0-9a-fA-F]*$ ]] && cnb 16 8 "$(2uc "$1")"; }
+# convert a hexadecimal number to the corresponding decimal number.
+h2d() { [[ "$1" =~ ^-?[0-9a-fA-F][0-9a-fA-F]*$ ]] && cnb 16 8 "$(2uc "$1")"; }

@@ -2,10 +2,11 @@
 # Extra configurations for Cygwin
 #
 
-[ "${OSTYPE}" = "cygwin" ] && {
-  export CYGWIN_SYSTEM_LOCALE=$(systeminfo | \
-                                  head -22 | \
-                                  tail -1 | \
-                                  awk '{print $3}' | \
-                                  cut -d';' -f 1)
-}
+if [ "${OSTYPE}" = "cygwin" ]; then
+  CYGWIN_SYSTEM_LOCALE=$(systeminfo | \
+                           head -22 | \
+                           tail -1 | \
+                           awk '{print $3}' | \
+                           cut -d';' -f 1)
+  export CYGWIN_SYSTEM_LOCALE
+fi

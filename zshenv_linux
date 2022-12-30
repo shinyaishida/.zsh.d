@@ -4,9 +4,9 @@
 
 # *env is to be installed by basic GitHub checkout
 venvs=(pyenv rbenv nodenv)
-for venv in ${venvs[@]}; do
-  local venv_bin=$HOME/.${venv}/bin
-  [ -d ${venv_bin} ] && {
-    PATH=${venv_bin}:$PATH
-  }
+for venv in "${venvs[@]}"; do
+  venv_bin="$HOME/.${venv}/bin"
+  if [ -d "${venv_bin}" ]; then
+    PATH="${venv_bin}:$PATH"
+  fi
 done

@@ -1,18 +1,25 @@
 AgentCache=~/.ssh/agent
 
-[ -f ${AgentCache} ] && {
-  source ${AgentCache}
-  kill -0 $SSH_AGENT_PID >/dev/null 2>&1
-}
-[ $? != 0 ] && {
+# shellcheck disable=SC2015
+# C should run when A or B fails.
+[ -f "${AgentCache}" ] && {
+  # shellcheck disable=SC1090
+  source "${AgentCache}" >/dev/null
+  kill -0 "$SSH_AGENT_PID" >/dev/null 2>&1
+} || {
   ssh-agent > ${AgentCache}
-  source ${AgentCache}
+  # shellcheck disable=SC1090
+  source "${AgentCache}" >/dev/null
 }
 
-[[ "${OSTYPE}" =~ darwin* ]] && {
-  (( ${OSTYPE#darwin} >= 20.0 )) && {
-    ssh-add --apple-load-keychain
-  } || {
-    ssh-add -A
-  }
-}
+if [[ "${OSTYPE}" =~ darwin* ]]; then
+  # shellcheck disable=SC2079
+  # this is a zsh script.
+  if (( ${OSTYPE#darwin} >= 20.0 )); then
+    ssh-add --apple-load-keychain >/dev/null 2>&1
+  else
+    ssh-add -A >/dev/null 2>&1
+  fi
+fi
+
+unset AgentCache

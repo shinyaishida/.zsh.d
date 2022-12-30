@@ -8,26 +8,31 @@
 #
 
 umask 022
-zshConfigPath=~/.zsh.d
 
 function LoadZshEnv() {
-  pushd ${zshConfigPath} >/dev/null
-  local zshEnv=zshenv_$1
-  [ -f ${zshEnv} ] && {
-    [ ${#1} -lt 4 ] && {
-      padding="\t\t"
-    } || {
-      padding="\t"
-    }
-    echo -n "Loading $1 env${padding}"
-    source ${zshEnv}
-    [ $? -eq 0 ] && {
-      echo "done"
-    } || {
-      echo "failed"
-    }
+  pushd "$HOME/.zsh.d" >/dev/null || {
+    echo 'failed to load zshenv'
+    return 1
   }
-  popd >/dev/null
+  local zshEnv=zshenv_$1
+  [ -f "${zshEnv}" ] && {
+    if [ "${#1}" -lt 4 ]; then
+      padding='\t\t'
+    else
+      padding='\t'
+    fi
+    echo -n "Loading $1 env${padding}"
+    # shellcheck disable=SC1090
+    if source "${zshEnv}"; then
+      echo 'done'
+    else
+      echo 'failed'
+    fi
+  }
+  popd >/dev/null || {
+    echo 'failed to load zshenv'
+    return 2
+  }
 }
 
 case "${OSTYPE}" in

@@ -1,3 +1,0 @@
-# converts a binary number to the corrensponding hexadecimal number.
-autoload -Uz cnb
-[[ "$1" =~ '^-?[01][01]*$' ]] && cnb 2 10000 $1

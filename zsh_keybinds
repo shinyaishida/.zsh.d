@@ -2,23 +2,23 @@
 # and something additions
 #
 bindkey -e
-bindkey "^[[1~" beginning-of-line # Home gets to line head
-bindkey "^[[4~" end-of-line # End gets to line end
-bindkey "^[[3~" delete-char # Del
+bindkey '^[[1~' beginning-of-line # Home gets to line head
+bindkey '^[[4~' end-of-line # End gets to line end
+bindkey '^[[3~' delete-char # Del
 
 # historical backward/forward search with linehead string binded to ^P/^N
 #
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
-bindkey "^p" history-beginning-search-backward-end
-bindkey "^n" history-beginning-search-forward-end
-bindkey "\\ep" history-beginning-search-backward-end
-bindkey "\\en" history-beginning-search-forward-end
+bindkey '^p' history-beginning-search-backward-end
+bindkey '^n' history-beginning-search-forward-end
+bindkey '\\ep' history-beginning-search-backward-end
+bindkey '\\en' history-beginning-search-forward-end
 
 # reverse menu completion binded to Shift-Tab
 #
-bindkey "\e[Z" reverse-menu-complete
+bindkey '\e[Z' reverse-menu-complete
 
 #
 # ctrl-z hook
@@ -27,15 +27,15 @@ bindkey "\e[Z" reverse-menu-complete
 # Second successive ctrl-z sends the job to the background.
 #
 ctrl-z-hook () {
-  if [[ $#BUFFER -eq 0 ]]; then
-	echo
-	bg
-	zle redisplay
-  else
-	zle push-input
+  if (( $#BUFFER = 0 )); then
+	  echo
+	  bg
+	  zle redisplay
+    else
+	  zle push-input
   fi
-  echo "-- job list --"
+  echo '-- job list --'
   jobs -l
 }
 zle -N ctrl-z-hook
-bindkey "^z" ctrl-z-hook
+bindkey '^z' ctrl-z-hook
