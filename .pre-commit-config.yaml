@@ -15,4 +15,4 @@ repos:
     description: This hook applies ShellCheck to zshrc files in .zsh.d.
     language: system
     entry: shellcheck --shell=bash
-    files: ^z*
+    files: ^(zsh*|zprofile|setup.sh)

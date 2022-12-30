@@ -1,2 +1,0 @@
-# converts upper case letters to lower case letters.
-echo $1 | tr '[A-Z]' '[a-z]' 2> /dev/null

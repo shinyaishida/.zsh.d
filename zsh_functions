@@ -1,9 +1,0 @@
-zshFunctionsDir=${zshConfigPath}/functions
-zshFunctions=$(find ${zshFunctionsDir} -mindepth 1 -maxdepth 1 -type d)
-for d in ${zshFunctions[@]}; do
-  alist=${d}/.autoload
-  funcs=($([ -f ${alist} ] && cat ${alist}))
-  for func in ${funcs[@]}; do
-	autoload -Uz ${func}
-  done
-done

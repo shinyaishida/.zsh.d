@@ -1,3 +1,0 @@
-# converts a binary number to the corrensponding octal number.
-autoload -Uz cnb
-[[ "$1" =~ '^-?[01][01]*$' ]] && cnb 2 1000 $1

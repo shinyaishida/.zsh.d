@@ -1,9 +1,0 @@
-# This hook reuses the entry and language of the original shellcheck pre-commit
-# hook, which is available at
-# https://github.com/koalaman/shellcheck-precommit/blob/master/.pre-commit-hooks.yaml,
-# to apply spellcheck to zshrc files not having the `.sh` extension.
-- id: zshrc-shellcheck
-  name: ShellCheck for zshrc files
-  description: This hook applies ShellCheck to zshrc files in .zsh.d.
-  language: system
-  entry: shellcheck --shell=bash z*

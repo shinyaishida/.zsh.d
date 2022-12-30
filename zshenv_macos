@@ -3,13 +3,14 @@
 #
 
 function configJava() {
-  [ -f "/usr/libexec/java_home" ] && {
-    export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
-  }
+  if [ -f "/usr/libexec/java_home" ]; then
+    JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
+    export JAVA_HOME
+  fi
 }
 
-[ $(uname -s) = "Darwin" ] && {
+if [ "$(uname -s)" = "Darwin" ]; then
   configJava
-}
+fi
 
 unset -f configJava

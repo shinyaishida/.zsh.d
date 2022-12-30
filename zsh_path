@@ -1,29 +1,32 @@
-PATH=$HOME/bin:$PATH
+PATH="$HOME/bin:$PATH"
 
-[ $(uname -s) = "Darwin" ] && {
+if [ "$(uname -s)" = "Darwin" ]; then
   HOMEBREW_HOME=/opt/homebrew
-  [ -d "${HOMEBREW_HOME}" ] && {
+  if [ -d "${HOMEBREW_HOME}" ]; then
     eval "$($HOMEBREW_HOME/bin/brew shellenv)"
-  }
-}
+  fi
+fi
 
 # `pyenv init -` no longer sets PATH.
 PYENV_ROOT="$HOME/.pyenv"
-[ -d $PYENV_ROOT ] && {
+if [ -d "$PYENV_ROOT" ]; then
   export PYENV_ROOT
   eval "$(pyenv init --path)"
-}
+fi
 
 venvs=(rbenv nodenv)
 
-for venv in ${venvs[@]}; do
-  [ $(command -v ${venv}) ] && eval "$(${venv} init -)"
+for venv in "${venvs[@]}"; do
+  if command -v "${venv}" >/dev/null; then
+    eval "$(${venv} init -)"
+  fi
 done
 
 # Rust
 CARGO_ROOT="$HOME/.cargo"
-[ -d $CARGO_ROOT ] && {
+if [ -d "$CARGO_ROOT" ] && [ -f "$CARGO_ROOT/env" ]; then
+  # shellcheck source=/dev/null
   source "$CARGO_ROOT/env"
-}
+fi
 
 unset venvs
