@@ -1,4 +1,4 @@
-PATH="$HOME/bin:$PATH"
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 if [ "$(uname -s)" = "Darwin" ]; then
   HOMEBREW_HOME=/opt/homebrew
@@ -15,7 +15,6 @@ if [ -d "$PYENV_ROOT" ]; then
 fi
 
 venvs=(rbenv nodenv)
-
 for venv in "${venvs[@]}"; do
   if command -v "${venv}" >/dev/null; then
     eval "$(${venv} init -)"
